@@ -1,7 +1,11 @@
+import { Outlet } from 'react-router';
+import Header from './components/Header/Header';
+
 function App() {
   return (
     <>
-      <h1>Shopping Cart</h1>
+      <Header />
+      <Outlet />
     </>
   );
 }
