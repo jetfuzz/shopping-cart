@@ -1,9 +1,9 @@
-import App from "./App";
-import Cart from "./pages/Cart/Cart";
-import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import Home from "./pages/Home/Home";
-import Shop from "./pages/Shop/Shop";
-import ShopItem from "./pages/ShopItem/ShopItem";
+import App from './App';
+import Cart from './pages/Cart/Cart';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import Home from './pages/Home/Home';
+import Shop from './pages/Shop/Shop';
+import ShopItem from './pages/ShopItem/ShopItem';
 
 const routes = [
   {
