@@ -1,9 +1,9 @@
 import App from './App';
-import Cart from './pages/Cart/Cart';
+import CartPage from './pages/CartPage/CartPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
-import Home from './pages/Home/Home';
-import Shop from './pages/Shop/Shop';
-import ShopItem from './pages/ShopItem/ShopItem';
+import HomePage from './pages/HomePage/HomePage';
+import ShopPage from './pages/ShopPage/ShopPage';
+import ItemPage from './pages/ItemPage/ItemPage';
 
 const routes = [
   {
@@ -13,19 +13,19 @@ const routes = [
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <HomePage />,
       },
       {
         path: '/shop',
-        element: <Shop />,
+        element: <ShopPage />,
       },
       {
         path: '/shop/:id',
-        element: <ShopItem />,
+        element: <ItemPage />,
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: <CartPage />,
       },
     ],
   },
