@@ -9,7 +9,7 @@ interface ShopContext {
   searchQuery: string;
 }
 
-export default function Shop() {
+export default function ShopPage() {
   const { products, searchQuery } = useOutletContext<ShopContext>();
   const categories = [...new Set(products.map((p) => p.category))];
   const [selected, setSelected] = useState<string[]>([]);
