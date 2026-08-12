@@ -4,8 +4,13 @@ import ItemCard from '../../components/ItemCard/ItemCard';
 import styles from './ShopPage.module.css';
 import { useState } from 'react';
 
+interface ShopContext {
+  products: Product[];
+  searchQuery: string;
+}
+
 export default function Shop() {
-  const products = useOutletContext<Product[]>();
+  const { products, searchQuery } = useOutletContext<ShopContext>();
   const categories = [...new Set(products.map((p) => p.category))];
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -17,10 +22,9 @@ export default function Shop() {
     );
   }
 
-  const filteredProducts =
-    selected.length === 0
-      ? products
-      : products.filter((p) => selected.includes(p.category));
+  const filteredProducts = products
+    .filter((p) => selected.length === 0 || selected.includes(p.category))
+    .filter((p) => p.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div>
@@ -41,11 +45,11 @@ export default function Shop() {
       </fieldset>
 
       <div className={styles.shopItems}>
-        {filteredProducts.length === 0 
-        ? <p>No results.</p> 
-        : filteredProducts.map((p) => (
-          <ItemCard key={p.id} product={p} />
-        ))}
+        {filteredProducts.length === 0 ? (
+          <p>No results.</p>
+        ) : (
+          filteredProducts.map((p) => <ItemCard key={p.id} product={p} />)
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { fetchProducts } from './api/products';
 
 function App() {
   const [state, setState] = useState<ProductState>({ status: 'loading' });
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect(() => {
     (async () => {
@@ -24,10 +25,12 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {state.status === 'loading' && <p>Loading...</p>}
       {state.status === 'error' && <p>{state.message}</p>}
-      {state.status === 'success' && <Outlet context={state.data} />}
+      {state.status === 'success' && (
+        <Outlet context={{ products: state.data, searchQuery }} />
+      )}
     </>
   );
 }
