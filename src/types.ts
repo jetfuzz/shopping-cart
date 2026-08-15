@@ -11,7 +11,7 @@ export interface Product {
   };
 }
 
-export type ProductState =
-  | { status: 'loading' }
-  | { status: 'error'; message: string }
-  | { status: 'success'; data: Product[] };
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}

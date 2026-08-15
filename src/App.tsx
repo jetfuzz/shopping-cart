@@ -1,35 +1,27 @@
 import { Outlet } from 'react-router';
 import Header from './components/Header/Header';
-import type { ProductState } from './types';
-import { useEffect, useState } from 'react';
-import { fetchProducts } from './api/products';
+import { useState } from 'react';
+import { useProducts } from './hooks/useProducts';
+import { useCart } from './hooks/useCart';
 
 function App() {
-  const [state, setState] = useState<ProductState>({ status: 'loading' });
+  const productState = useProducts();
   const [searchQuery, setSearchQuery] = useState<string>('');
-
-  useEffect(() => {
-    (async () => {
-      try {
-        setState({ status: 'loading' });
-        const products = await fetchProducts();
-        setState({ status: 'success', data: products });
-      } catch (err) {
-        setState({
-          status: 'error',
-          message: err instanceof Error ? err.message : 'Something went wrong',
-        });
-      }
-    })();
-  }, []);
+  const { cartItemCount, addToCart } = useCart();
 
   return (
     <>
-      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      {state.status === 'loading' && <p>Loading...</p>}
-      {state.status === 'error' && <p>{state.message}</p>}
-      {state.status === 'success' && (
-        <Outlet context={{ products: state.data, searchQuery }} />
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        cartItemCount={cartItemCount}
+      />
+      {productState.status === 'loading' && <p>Loading...</p>}
+      {productState.status === 'error' && <p>{productState.message}</p>}
+      {productState.status === 'success' && (
+        <Outlet
+          context={{ products: productState.data, searchQuery, addToCart }}
+        />
       )}
     </>
   );
