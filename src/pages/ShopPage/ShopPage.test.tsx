@@ -5,19 +5,7 @@ import { useOutletContext } from 'react-router';
 import type { Product } from '../../types';
 import '@testing-library/jest-dom/vitest';
 import userEvent from '@testing-library/user-event';
-
-function createMockProduct(overrides: Partial<Product> = {}): Product {
-  return {
-    id: 1,
-    title: 'Product',
-    price: 0,
-    description: '',
-    category: 'misc',
-    image: '/image.png',
-    rating: { rate: 0, count: 0 },
-    ...overrides,
-  };
-}
+import { createMockProduct } from '../../tests/mocks';
 
 const mockProducts: Product[] = [
   createMockProduct({

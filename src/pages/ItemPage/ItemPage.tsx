@@ -36,13 +36,13 @@ export default function ItemPage() {
             type="number"
             min={1}
             value={quantity}
-            onChange={(e) => setQuantity(Math.max(1, Number(e.target.value) || 1))}
+            onChange={(e) =>
+              setQuantity(Math.max(1, Number(e.target.value) || 1))
+            }
           />
           <button onClick={increment}>+</button>
         </div>
-        <button
-          onClick={() => addToCart(product, quantity)}
-        >
+        <button onClick={() => addToCart(product, quantity)}>
           Add to cart
         </button>
       </div>
