@@ -4,9 +4,14 @@ import { Link } from 'react-router';
 interface HeaderProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+  cartItemCount: number;
 }
 
-export default function Header({ searchQuery, setSearchQuery }: HeaderProps) {
+export default function Header({
+  searchQuery,
+  setSearchQuery,
+  cartItemCount,
+}: HeaderProps) {
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>): void {
     setSearchQuery(e.target.value);
   }
@@ -28,7 +33,7 @@ export default function Header({ searchQuery, setSearchQuery }: HeaderProps) {
           <Link to="/shop">Shop</Link> |
         </span>
         <span>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">Cart {cartItemCount > 0 && cartItemCount}</Link>
         </span>
       </nav>
     </header>

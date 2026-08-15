@@ -1,9 +1,14 @@
 import { useOutletContext, useParams } from 'react-router';
 import type { Product } from '../../types';
 
+interface ItemPageContext {
+  products: Product[];
+  addToCart: (product: Product) => void;
+}
+
 export default function ItemPage() {
   const { id } = useParams<{ id: string }>();
-  const { products } = useOutletContext<{ products: Product[] }>();
+  const { products, addToCart } = useOutletContext<ItemPageContext>();
   const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
@@ -20,6 +25,7 @@ export default function ItemPage() {
       <p>{product.price}</p>
       <p>{product.category}</p>
       <p>{product.description}</p>
+      <button onClick={() => addToCart(product)}>Add to cart</button>
     </div>
   );
 }
