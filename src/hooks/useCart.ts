@@ -26,6 +26,7 @@ export function useCart() {
   }
 
   function updateQuantity(productId: number, quantity: number) {
+    if (quantity < 1) return;
     setCart((prev) =>
       prev.map((item) =>
         item.product.id === productId ? { ...item, quantity } : item,
