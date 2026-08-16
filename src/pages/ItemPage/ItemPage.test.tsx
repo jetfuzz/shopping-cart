@@ -51,4 +51,22 @@ describe('ItemPage', () => {
 
     expect(screen.getByRole('spinbutton')).toHaveValue(1);
   });
+
+  it('should call addToCart with the correct quantity', async () => {
+    const addToCart = vi.fn();
+    vi.mocked(useParams).mockReturnValue({ id: '1' });
+    vi.mocked(useOutletContext).mockReturnValue({
+      products: mockProducts,
+      addToCart,
+    });
+    const user = userEvent.setup();
+    render(<ItemPage />);
+
+    await user.click(screen.getByRole('button', { name: '+' }));
+    await user.click(screen.getByRole('button', { name: '+' }));
+    await user.click(screen.getByRole('button', { name: '-' }));
+    await user.click(screen.getByRole('button', { name: 'Add to cart' }));
+
+    expect(addToCart).toHaveBeenCalledWith(mockProducts[0], 2);
+  });
 });
