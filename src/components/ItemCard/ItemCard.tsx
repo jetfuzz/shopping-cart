@@ -1,6 +1,7 @@
 import { Link, useOutletContext } from 'react-router';
 import type { Product } from '../../types';
 import styles from './ItemCard.module.css';
+import { formatPrice } from '../../utils/formatPrice';
 
 interface ItemCardProps {
   product: Product;
@@ -23,7 +24,7 @@ export default function ItemCard({ product }: ItemCardProps) {
       <p>
         {product.rating.rate} out of 5 ({product.rating.count} reviews)
       </p>
-      <p>${product.price}</p>
+      <p>{formatPrice(product.price)}</p>
       <button onClick={() => addToCart(product)}>Add to cart</button>
     </div>
   );

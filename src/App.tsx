@@ -7,7 +7,8 @@ import { useCart } from './hooks/useCart';
 function App() {
   const productState = useProducts();
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const { cartItemCount, addToCart } = useCart();
+  const { cart, cartItemCount, addToCart, updateQuantity, removeFromCart } =
+    useCart();
 
   return (
     <>
@@ -20,7 +21,14 @@ function App() {
       {productState.status === 'error' && <p>{productState.message}</p>}
       {productState.status === 'success' && (
         <Outlet
-          context={{ products: productState.data, searchQuery, addToCart }}
+          context={{
+            products: productState.data,
+            searchQuery,
+            cart,
+            addToCart,
+            removeFromCart,
+            updateQuantity,
+          }}
         />
       )}
     </>

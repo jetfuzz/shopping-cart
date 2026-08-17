@@ -2,6 +2,7 @@ import { useOutletContext, useParams } from 'react-router';
 import type { Product } from '../../types';
 import { useState } from 'react';
 import styles from './ItemPage.module.css';
+import { formatPrice } from '../../utils/formatPrice';
 
 interface ItemPageContext {
   products: Product[];
@@ -27,7 +28,7 @@ export default function ItemPage() {
         <p>
           {product.rating.rate} out of 5 ({product.rating.count} reviews)
         </p>
-        <p>${product.price}</p>
+        <p>{formatPrice(product.price)}</p>
         <p>{product.category}</p>
         <p>{product.description}</p>
         <div>
