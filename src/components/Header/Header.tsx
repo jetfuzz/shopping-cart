@@ -1,5 +1,6 @@
+import { Search } from 'lucide-react';
 import type { ChangeEvent } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 interface HeaderProps {
   searchQuery: string;
@@ -12,6 +13,8 @@ export default function Header({
   setSearchQuery,
   cartItemCount,
 }: HeaderProps) {
+  const navigate = useNavigate();
+
   function handleSearchChange(e: ChangeEvent<HTMLInputElement>): void {
     setSearchQuery(e.target.value);
   }
@@ -19,12 +22,22 @@ export default function Header({
   return (
     <header>
       <h1>Shopping Cart</h1>
-      <input
-        type="text"
-        placeholder="Search products"
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          navigate('/shop');
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button type="submit">
+          <Search size={18} aria-label="Search" />
+        </button>
+      </form>
       <nav>
         <span>
           <Link to="/">Home</Link> |
