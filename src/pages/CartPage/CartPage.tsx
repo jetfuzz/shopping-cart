@@ -26,7 +26,7 @@ function getTotal(cartItems: CartItem[]): OrderSummary {
   return { subtotal, tax, total: subtotal + tax };
 }
 
-export default function Cart() {
+export default function CartPage() {
   const { cart, updateQuantity, removeFromCart } =
     useOutletContext<CartContext>();
   const { subtotal, tax, total } = getTotal(cart);

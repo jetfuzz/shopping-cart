@@ -3,7 +3,7 @@ import { createMockProduct } from '../../tests/mocks';
 import type { CartItem } from '../../types';
 import { useOutletContext } from 'react-router';
 import { render, screen } from '@testing-library/react';
-import Cart from './CartPage';
+import CartPage from './CartPage';
 
 const mockCart: CartItem[] = [
   {
@@ -28,7 +28,7 @@ describe('CartPage', () => {
       updateQuantity: vi.fn(),
       removeFromCart: vi.fn(),
     });
-    render(<Cart />);
+    render(<CartPage />);
 
     expect(screen.getByText('Snowboard Jacket')).toBeInTheDocument();
     expect(screen.getByText('2')).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe('CartPage', () => {
       updateQuantity: vi.fn(),
       removeFromCart: vi.fn(),
     });
-    render(<Cart />);
+    render(<CartPage />);
 
     // subtotal = 56.99 * 2 = 113.98
     // tax = 113.98 * 0.13 = 14.8174 -> "$14.82"
@@ -56,7 +56,7 @@ describe('CartPage', () => {
       updateQuantity: vi.fn(),
       removeFromCart: vi.fn(),
     });
-    render(<Cart />);
+    render(<CartPage />);
 
     expect(screen.getByText(/cart is empty/)).toBeInTheDocument();
   });
