@@ -29,6 +29,12 @@
   text-align: center;
 }
 
+.rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
 .card p {
   font-size: var(--text-sm);
   font-weight: 500;

@@ -126,7 +126,6 @@ body {
     sans-serif;
   color: var(--color-text);
   background-color: var(--color-bg);
-
   padding-inline: var(--space-4);
 }
 

@@ -2,6 +2,7 @@ import { useOutletContext } from 'react-router';
 import type { CartItem } from '../../types';
 import { formatPrice } from '../../utils/formatPrice';
 import styles from './CartPage.module.css';
+import { Trash2 } from 'lucide-react';
 
 const TAX_RATE = 0.13;
 
@@ -33,17 +34,21 @@ export default function CartPage() {
 
   if (cart.length === 0) return <p>Your shopping cart is empty</p>;
   return (
+    <div>
+      <h2 className={styles.cartTitle}>Shopping Bag</h2>
     <div className={styles.cartPage}>
       <div className={styles.cart}>
-        <h2>Shopping Bag</h2>
         {cart.map((item) => (
           <div key={item.product.id} className={styles.cartItem}>
+            <div className={styles.imageWrapper}>
             <img src={item.product.image} alt={item.product.title} />
-            <div>
-              <h4>{item.product.title}</h4>
-              <p>{item.product.category}</p>
             </div>
-            <div>
+            <div className={styles.itemInfo}>
+              <h4>{item.product.title}</h4>
+              <p className={styles.category}>{item.product.category}</p>
+            </div>
+            <div className={styles.cartActions}>
+              <div className={styles.quantity}>
               <button
                 onClick={() =>
                   updateQuantity(item.product.id, item.quantity - 1)
@@ -61,10 +66,14 @@ export default function CartPage() {
                 +
               </button>
             </div>
-            <button onClick={() => removeFromCart(item.product.id)}>
-              Delete
+            <button 
+              className={styles.deleteButton} 
+              onClick={() => removeFromCart(item.product.id)}
+            >
+              <Trash2 size={18} />
             </button>
-            <p>{formatPrice(item.product.price * item.quantity)}</p>
+            <p className={styles.price}>{formatPrice(item.product.price * item.quantity)}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -74,8 +83,8 @@ export default function CartPage() {
         <p>Subtotal: {formatPrice(subtotal)}</p>
         <p>Tax: {formatPrice(tax)}</p>
         <hr />
-        <p>Total: {formatPrice(total)}</p>
-        <button
+        <p className={styles.orderTotal}>Total: {formatPrice(total)}</p>
+        <button className={styles.checkoutBtn}
           onClick={() =>
             window.alert(
               "Congrats! If this were a real shop, you'd have just placed an order 😁",
@@ -85,6 +94,7 @@ export default function CartPage() {
           Checkout
         </button>
       </div>
+    </div>
     </div>
   );
 }
