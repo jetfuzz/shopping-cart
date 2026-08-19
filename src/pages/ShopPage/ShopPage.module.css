@@ -3,11 +3,12 @@
 }
 
 .shopTitle {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: var(--space-5);
+  /* margin-bottom: var(--space-5); */
   margin-top: var(--space-3);
+  padding: var(--space-3);
 }
 
 .categoryFilter {
@@ -51,8 +52,9 @@
 }
 
 .categoryFilter label:has(input[type='checkbox']:checked) {
-  background-color: var(--color-card-hover);
-  box-shadow: var(--shadow-sm);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
   font-weight: 600;
 }
 

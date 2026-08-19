@@ -28,3 +28,13 @@
 .shopButton:hover {
   background-color: var(--color-primary-hover);
 }
+
+h3 {
+  font-size: var(--text-xl);
+  margin: var(--space-3) var(--space-1);
+}
+
+.products {
+  display: flex;
+  gap: var(--space-3);
+}
