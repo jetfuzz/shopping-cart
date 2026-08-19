@@ -14,7 +14,7 @@ header h1 {
 header ul {
   display: flex;
   list-style-type: none;
-  gap: var(--space-3);
+  gap: var(--space-5);
   align-items: center;
   margin: 0;
   padding: 0;
@@ -99,12 +99,16 @@ header ul li {
   }
 
   .header h1 {
-    font-size: var(--text-xl);
+    font-size: var(--text-base);
   }
 
   .searchFormLabel::placeholder,
   .header ul li {
     font-size: var(--text-sm);
+  }
+
+  .header ul {
+    gap: var(--space-3);
   }
 
   .searchForm {

@@ -27,10 +27,10 @@ export default function ShopPage() {
     .filter((p) => p.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
-    <div>
-      <h2>Shop</h2>
+    <div className={styles.shopPage}>
+      <h2 className={styles.shopTitle}>Shop</h2>
 
-      <fieldset>
+      <fieldset className={styles.categoryFilter}>
         <legend>Categories</legend>
         {categories.map((category) => (
           <label key={category}>

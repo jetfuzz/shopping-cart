@@ -16,15 +16,19 @@ export default function ItemCard({ product }: ItemCardProps) {
   return (
     <div className={styles.card}>
       <Link to={`/shop/${product.id}`}>
-        <img src={product.image} alt={product.title} />
+        <img
+          src={product.image}
+          alt={product.title}
+          className={styles.productImg}
+        />
       </Link>
       <Link to={`/shop/${product.id}`}>
-        <h2>{product.title}</h2>
+        <h2 className={styles.productTitle}>{product.title}</h2>
       </Link>
       <p>
-        {product.rating.rate} out of 5 ({product.rating.count} reviews)
+        ★ {product.rating.rate} ({product.rating.count})
       </p>
-      <p>{formatPrice(product.price)}</p>
+      <p className={styles.price}>{formatPrice(product.price)}</p>
       <button onClick={() => addToCart(product)}>Add to cart</button>
     </div>
   );
