@@ -11,6 +11,7 @@ const mockProducts: Product[] = [createMockProduct({ id: 1 })];
 vi.mock('react-router', () => ({
   useOutletContext: vi.fn(),
   useParams: vi.fn(),
+  useNavigate: vi.fn(),
 }));
 
 describe('ItemPage', () => {

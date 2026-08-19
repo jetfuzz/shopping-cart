@@ -36,65 +36,68 @@ export default function CartPage() {
   return (
     <div>
       <h2 className={styles.cartTitle}>Shopping Bag</h2>
-    <div className={styles.cartPage}>
-      <div className={styles.cart}>
-        {cart.map((item) => (
-          <div key={item.product.id} className={styles.cartItem}>
-            <div className={styles.imageWrapper}>
-            <img src={item.product.image} alt={item.product.title} />
+      <div className={styles.cartPage}>
+        <div className={styles.cart}>
+          {cart.map((item) => (
+            <div key={item.product.id} className={styles.cartItem}>
+              <div className={styles.imageWrapper}>
+                <img src={item.product.image} alt={item.product.title} />
+              </div>
+              <div className={styles.itemInfo}>
+                <h4>{item.product.title}</h4>
+                <p className={styles.category}>{item.product.category}</p>
+              </div>
+              <div className={styles.cartActions}>
+                <div className={styles.quantity}>
+                  <button
+                    onClick={() =>
+                      updateQuantity(item.product.id, item.quantity - 1)
+                    }
+                    disabled={item.quantity <= 1}
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    onClick={() =>
+                      updateQuantity(item.product.id, item.quantity + 1)
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => removeFromCart(item.product.id)}
+                >
+                  <Trash2 size={18} />
+                </button>
+                <p className={styles.price}>
+                  {formatPrice(item.product.price * item.quantity)}
+                </p>
+              </div>
             </div>
-            <div className={styles.itemInfo}>
-              <h4>{item.product.title}</h4>
-              <p className={styles.category}>{item.product.category}</p>
-            </div>
-            <div className={styles.cartActions}>
-              <div className={styles.quantity}>
-              <button
-                onClick={() =>
-                  updateQuantity(item.product.id, item.quantity - 1)
-                }
-                disabled={item.quantity <= 1}
-              >
-                -
-              </button>
-              <span>{item.quantity}</span>
-              <button
-                onClick={() =>
-                  updateQuantity(item.product.id, item.quantity + 1)
-                }
-              >
-                +
-              </button>
-            </div>
-            <button 
-              className={styles.deleteButton} 
-              onClick={() => removeFromCart(item.product.id)}
-            >
-              <Trash2 size={18} />
-            </button>
-            <p className={styles.price}>{formatPrice(item.product.price * item.quantity)}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <div className={styles.orderSummary}>
-        <h3>Order Summary</h3>
-        <p>Subtotal: {formatPrice(subtotal)}</p>
-        <p>Tax: {formatPrice(tax)}</p>
-        <hr />
-        <p className={styles.orderTotal}>Total: {formatPrice(total)}</p>
-        <button className={styles.checkoutBtn}
-          onClick={() =>
-            window.alert(
-              "Congrats! If this were a real shop, you'd have just placed an order 😁",
-            )
-          }
-        >
-          Checkout
-        </button>
+        <div className={styles.orderSummary}>
+          <h3>Order Summary</h3>
+          <p>Subtotal: {formatPrice(subtotal)}</p>
+          <p>Tax: {formatPrice(tax)}</p>
+          <hr />
+          <p className={styles.orderTotal}>Total: {formatPrice(total)}</p>
+          <button
+            className={styles.checkoutBtn}
+            onClick={() =>
+              window.alert(
+                "Congrats! If this were a real shop, you'd have just placed an order 😁",
+              )
+            }
+          >
+            Checkout
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

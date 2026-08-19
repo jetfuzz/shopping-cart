@@ -12,12 +12,11 @@ export default function ErrorPage() {
       </>
     );
   } else if (error instanceof Error) {
+    console.error(error.stack);
     return (
       <div>
         <h1>Error</h1>
         <p>{error.message}</p>
-        <p>The stack trace is:</p>
-        <pre>{error.stack}</pre>
       </div>
     );
   } else {
